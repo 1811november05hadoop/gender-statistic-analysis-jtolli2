@@ -25,7 +25,7 @@ public class FemaleGradCountryMapper extends Mapper<LongWritable, Text, Text, Fl
 		String line = value.toString();
 		
 		//also if(line.contains(".*(SE.TER.CMPL.FE).*"))
-		if(line.contains("SE.TER.CMPL.FE")) {
+		if(line.contains("SE.TER.CMPL.FE") &&  key.get() >= 28890) {
 			String[] entry = line.split(",");
 			float avg = 0;
 			float count = 1;
@@ -38,7 +38,9 @@ public class FemaleGradCountryMapper extends Mapper<LongWritable, Text, Text, Fl
 				}
 			}
 			avg /= count;
-			context.write(new Text(entry[0].substring(1, entry[0].length()-1)), new FloatWritable(avg));
+			if(avg <= 30 && avg != 0) {
+				context.write(new Text(entry[0].substring(1, entry[0].length()-1)), new FloatWritable(avg));
+			}
 		}
 		
 		/*if(line.matches("SE.TER.CMPL.FE")) {
