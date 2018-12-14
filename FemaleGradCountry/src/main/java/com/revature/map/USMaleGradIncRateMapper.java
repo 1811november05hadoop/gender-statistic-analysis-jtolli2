@@ -13,7 +13,7 @@ import org.apache.hadoop.mapreduce.Mapper;
  * @author cloudera
  *
  */
-public class USFemaleGradIncRateMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
+public class USMaleGradIncRateMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
 
 	@Override
 	public void map(LongWritable key, Text value, Context context)
@@ -21,7 +21,7 @@ public class USFemaleGradIncRateMapper extends Mapper<LongWritable, Text, Text, 
 
 		String line = value.toString();
 
-		if(line.contains("SE.TER.CMPL.FE") && line.contains("United States")) {
+		if(line.contains("SE.TER.CMPL.MA") && line.contains("United States")) {
 			String[] entry = line.split(",");
 			float avg = 0;
 			float count = 0;

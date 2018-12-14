@@ -7,21 +7,14 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-/**
- * This class is a Mapper that lists the average increase in female education in the U.S. from the year 2000 (considering only tertiary graduation).
- * It processes only the line with the indicator code 'SE.TER.CMPL.FE' and country code 'United States' and iterates through the received value to calculate the average for a specific country
- * @author cloudera
- *
- */
-public class USFemaleGradIncRateMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
-
+public class ChangeEmpFemaleMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
 	@Override
 	public void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
 
 		String line = value.toString();
 
-		if(line.contains("SE.TER.CMPL.FE") && line.contains("United States")) {
+		if(line.contains("SL.EMP.TOTL.SP.FE.ZS")) {
 			String[] entry = line.split(",");
 			float avg = 0;
 			float count = 0;
@@ -43,9 +36,9 @@ public class USFemaleGradIncRateMapper extends Mapper<LongWritable, Text, Text, 
 					count++;
 				}
 			}
-			if(count != 0) {
+			if(count != 0){
 				avg /= count;
-				context.write(new Text(entry[0].substring(1, entry[0].length()-1)), new FloatWritable(avg));
+				context.write(new Text("Female Average Employement Change"), new FloatWritable(avg));
 			}
 		}
 	}
