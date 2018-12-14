@@ -7,6 +7,12 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+/**
+ * This class is a Mapper that lists the % of change in male employment from the year 2000 (considering only tertiary graduation).
+ * It processes only the lines with the indicator code 'SL.EMP.TOTL.SP.MA.ZS' iterates through the received values to calculate the average for a specific country
+ * @author cloudera
+ *
+ */
 public class ChangeEmpMaleMapper extends Mapper<LongWritable, Text, Text, FloatWritable> {
 	@Override
 	public void map(LongWritable key, Text value, Context context)

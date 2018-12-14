@@ -22,11 +22,11 @@ public class GenderDataDriver {
 			System.out.printf(
 					"Usage: GenderDataDriver <map reduce option> <input dir> <output dir>\n"
 					+ "Map Reduce Options:\n"
-					+ "1: 1\n"
-					+ "2: 1\n"
-					+ "3: 1\n"
-					+ "4: 1\n"
-					+ "5: 1\n");
+					+ "1: Question 1\n"
+					+ "2: Question 2\n"
+					+ "3: Question 3\n"
+					+ "4: Question 4\n"
+					+ "5: Question 5\n");
 			System.exit(-1);
 		}
 		
